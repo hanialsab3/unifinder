@@ -25,7 +25,7 @@ SECRET_KEY = 'px*x(hp=h)6jbm(q5plyz5!qxuz9czjzd+1!dl-+m$^bwx_l&o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hanialsab3.pythonanywhere.com']
+ALLOWED_HOSTS = ['hanialsab3.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition
