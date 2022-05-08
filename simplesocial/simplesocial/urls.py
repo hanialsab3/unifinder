@@ -16,14 +16,23 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.urls import path
 from django.contrib import admin
+from rest_framework import routers
 from . import views
+from accounts.views import UniversityViewSet, StudentViewSet,UserViewSet
+from rest_framework.authtoken.views import obtain_auth_token
 
 
+router = routers.DefaultRouter()
+router.register('users', UserViewSet)
+router.register('Universitys', UniversityViewSet)
+router.register('Students', StudentViewSet)
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.HomePage.as_view(),name='home'),
+    path('api/', include(router.urls)),
+    path('auth/',obtain_auth_token),
     url(r'^accounts/',include('accounts.urls',namespace='accounts')),
     url(r'^accounts/',include('django.contrib.auth.urls')),
     url(r'^test/$',views.TestPage.as_view(),name='test'),
