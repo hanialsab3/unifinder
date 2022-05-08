@@ -23,6 +23,8 @@ class UniversityViewSet(viewsets.ModelViewSet):
     queryset = University.objects.all()
     authentication_classes = (TokenAuthentication,)
 
+
+
 class StudentViewSet(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
     queryset = Student.objects.all()

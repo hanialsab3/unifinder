@@ -17,6 +17,10 @@ class University(models.Model):
     location = models.CharField(max_length=120, null=True)
     about = models.TextField(max_length=256, null=True)
 
+    def no_of_students(self):
+        students = Student.objects.filter(uni=self)
+        return len(students)
+
     def __str__(self):
         if self.name==None:
             return "ERROR-UNIVERSITY NAME IS NULL"
