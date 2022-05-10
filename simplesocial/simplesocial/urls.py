@@ -37,4 +37,6 @@ urlpatterns = [
     url(r'^accounts/',include('django.contrib.auth.urls')),
     url(r'^test/$',views.TestPage.as_view(),name='test'),
     url(r'^thanks/$',views.ThanksPage.as_view(),name='thanks'),
+    path('universities', views.UniversityListView.as_view(), name='university-list'),
+     path('<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
 ]

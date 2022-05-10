@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+  <h1>Our Universities: </h1><br>
+
+  <ul class="list-group">
+    {% for uni in object_list %}
+      <li class="list-group-item" ><a href="{{ uni.get_absolute_url }}">{{ uni.name}} <br> {{ uni.phone }} <br> {{ uni.website }} </a></li>
+    {% empty %}
+      <li class="list-group-item">No Universities yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<img src="{% static 'images/'%}" alt="" >
+<h1>{{ object.name }}</h1>
+<p>{{ object.about }}</p>
+<p>Phone: {{ object.phone }}</p>
+<p>Website: {{ object.website }}</p>
+<p>Date: {{ now|date }}</p>
+
+{% endblock %}

@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 
 # class User(auth.models.User, auth.models.PermissionsMixin):
@@ -11,6 +12,7 @@ from django.utils import timezone
 
 class University(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='', null=True)
     website = models.CharField(max_length=120)
     name = models.CharField(max_length=120, null=True)
     phone = models.CharField(max_length=120, null=True)
@@ -25,6 +27,9 @@ class University(models.Model):
         if self.name==None:
             return "ERROR-UNIVERSITY NAME IS NULL"
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("university-detail", args=[str(self.id)])
 
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
