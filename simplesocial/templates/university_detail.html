@@ -1,7 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<img src="{% static 'images/'%}" alt="" >
+<img src="{{ object.profile_picture.url }}" alt="" >
+<img src="../images/The-AUP-Neighborhood-2.jpg" alt="">
+{{object.profile_picture.url}}
+
+
 <h1>{{ object.name }}</h1>
 <p>{{ object.about }}</p>
 <p>Phone: {{ object.phone }}</p>

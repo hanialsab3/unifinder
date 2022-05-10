@@ -12,7 +12,7 @@ from django.urls import reverse
 
 class University(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to='', null=True)
+    profile_picture = models.ImageField(null=True, blank=True)
     website = models.CharField(max_length=120)
     name = models.CharField(max_length=120, null=True)
     phone = models.CharField(max_length=120, null=True)

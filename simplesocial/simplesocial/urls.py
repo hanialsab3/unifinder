@@ -21,6 +21,8 @@ from . import views
 from accounts.views import UniversityViewSet, StudentViewSet,UserViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
+from django.conf.urls.static import static
+from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register('users', UserViewSet)
@@ -40,3 +42,5 @@ urlpatterns = [
     path('universities', views.UniversityListView.as_view(), name='university-list'),
      path('<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
