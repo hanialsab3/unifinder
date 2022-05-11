@@ -40,7 +40,8 @@ urlpatterns = [
     url(r'^test/$',views.TestPage.as_view(),name='test'),
     url(r'^thanks/$',views.ThanksPage.as_view(),name='thanks'),
     path('universities', views.UniversityListView.as_view(), name='university-list'),
-     path('<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
+    path('<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
+    path('debug/',views.Debug.as_view(),name='debug'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

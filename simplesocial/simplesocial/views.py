@@ -4,6 +4,8 @@ from django.views.generic.detail import DetailView
 from django.utils import timezone
 from accounts.models import University, Student
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+
 
 class TestPage(TemplateView):
     template_name = 'test.html'
@@ -14,6 +16,9 @@ class ThanksPage(TemplateView):
 class HomePage(TemplateView):
     template_name = 'index.html'
 
+class Debug(TemplateView):
+    template_name = 'debug.html'
+
 class UniversityListView(ListView):
     model = University
     paginate_by = 100  # if pagination is desired
@@ -23,6 +28,7 @@ class UniversityListView(ListView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
 
 class UniversityDetailView(DetailView):
 

@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .serializers import UniversitySerializer, StudentSerializer, UserSerializer
 from .models import University, Student
 from rest_framework.authentication import TokenAuthentication
+from django.contrib.auth.decorators import login_required
 
 
 from . import forms
@@ -24,6 +25,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     authentication_classes = (TokenAuthentication,)
+
 
 class UniversityViewSet(viewsets.ModelViewSet):
     serializer_class = UniversitySerializer
