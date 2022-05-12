@@ -40,7 +40,7 @@ class Student(models.Model):
 
 
 class Application(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    # student = models.ForeignKey(Student, on_delete=models.CASCADE)
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     motivation = models.CharField(max_length=120)  #file
     cv = models.CharField(max_length=120)

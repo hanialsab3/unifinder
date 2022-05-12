@@ -20,3 +20,9 @@ class ApplicationForm(ModelForm):
     class Meta:
         model = Application
         fields = ('university','motivation',"cv")
+
+        widgets = {
+            'university': forms.Select(attrs={'class':'form-select'}),
+            'motivation': forms.TextInput(attrs={'class':'form-control'}),
+            'cv': forms.TextInput(attrs={'class':'form-control'}),
+        }

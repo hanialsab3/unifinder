@@ -48,7 +48,7 @@ def ApplyView(request):
     if request.method == "POST":
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            # form.save()
+            form.save()
             return HttpResponseRedirect('/apply?submitted=True')
     else:
         form = ApplicationForm
