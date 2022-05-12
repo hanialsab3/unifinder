@@ -1,5 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from django.forms import ModelForm
+from .models import University, Student, Application
 
 class UserCreateForm(UserCreationForm):
     class Meta:
@@ -11,3 +14,9 @@ class UserCreateForm(UserCreationForm):
         super().__init__(*args,**kwargs)
         self.fields['username'].label = "Display Name"
         self.fields['email'].label = "Email Address"
+
+
+class ApplicationForm(ModelForm):
+    class Meta:
+        model = Application
+        fields = ('university','motivation',"cv")

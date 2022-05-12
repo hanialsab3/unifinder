@@ -5,6 +5,9 @@ from django.utils import timezone
 from accounts.models import University, Student
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from accounts.forms import ApplicationForm
 
 
 class TestPage(TemplateView):
@@ -16,7 +19,7 @@ class ThanksPage(TemplateView):
 class HomePage(TemplateView):
     template_name = 'index.html'
 
-class Debug(TemplateView):
+class DebugView(TemplateView):
     template_name = 'debug.html'
 
 class UniversityListView(ListView):
@@ -38,3 +41,17 @@ class UniversityDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+
+def ApplyView(request):
+    submitted = False
+    if request.method == "POST":
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            return HttpResponseRedirect('/apply?submitted=True')
+    else:
+        form = ApplicationForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'apply.html', {'form':form, 'submitted':submitted})
