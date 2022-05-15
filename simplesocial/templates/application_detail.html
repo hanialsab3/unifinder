@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1 >{{ object.id }}</h1>
+<h3 style="color:blue">CV:</h3> <br>
+<p>{{ object.cv }}</p>
+<h3 style="color:blue">Motivation Letter:</h3> <br>
+<p>{{ object.motivation }}</p>
+<!-- <p>Date: {{ now|date }}</p> -->
+
+
+{% endblock %}

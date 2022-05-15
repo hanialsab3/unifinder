@@ -41,6 +41,9 @@ class Student(models.Model):
 
 class Application(models.Model):
     # student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    university = models.ForeignKey(University, on_delete=models.CASCADE)
+    uni = models.ForeignKey(University, on_delete=models.CASCADE)
     motivation = models.CharField(max_length=120)  #file
     cv = models.CharField(max_length=120)
+
+    def get_absolute_url(self):
+        return reverse("application-detail", args=[str(self.id)])

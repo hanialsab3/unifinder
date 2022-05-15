@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import University,Student
+from .models import University,Student, Application
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
@@ -23,4 +23,10 @@ class UniversitySerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['id','user','uni','application',]
+        fields = ['id','user','uni','application_debug',]
+
+
+class ApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Application
+        fields = ['id','uni','motivation','cv']

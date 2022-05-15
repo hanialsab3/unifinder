@@ -18,7 +18,7 @@ from django.urls import path
 from django.contrib import admin
 from rest_framework import routers
 from . import views
-from accounts.views import UniversityViewSet, StudentViewSet,UserViewSet
+from accounts.views import UniversityViewSet, StudentViewSet,UserViewSet, ApplicationViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
 from django.conf.urls.static import static
@@ -28,6 +28,7 @@ router = routers.DefaultRouter()
 router.register('users', UserViewSet)
 router.register('Universitys', UniversityViewSet)
 router.register('Students', StudentViewSet)
+router.register('Applications', ApplicationViewSet)
 
 
 urlpatterns = [
@@ -42,7 +43,9 @@ urlpatterns = [
     path('universities', views.UniversityListView.as_view(), name='university-list'),
     path('<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
     path('debug/',views.DebugView.as_view(),name='debug'),
-    path('apply/',views.ApplyView,name='apply')
+    path('apply/',views.ApplyView,name='apply'),
+    path('applications', views.ApplicationListView.as_view(), name='application-list'),
+    path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application-detail'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

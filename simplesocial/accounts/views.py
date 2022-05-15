@@ -7,8 +7,8 @@ from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .serializers import UniversitySerializer, StudentSerializer, UserSerializer
-from .models import University, Student
+from .serializers import UniversitySerializer, StudentSerializer, UserSerializer, ApplicationSerializer
+from .models import University, Student, Application
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
 
@@ -38,5 +38,12 @@ class UniversityViewSet(viewsets.ModelViewSet):
 class StudentViewSet(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
     queryset = Student.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+
+class ApplicationViewSet(viewsets.ModelViewSet):
+    serializer_class = ApplicationSerializer
+    queryset = Application.objects.all()            #.filter(uni=..)
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)

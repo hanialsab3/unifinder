@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+  <h1>Applications: </h1><br>
+
+  <ul class="list-group">
+    {% for app in object_list %}
+      <li class="list-group-item" ><a href="{{ app.get_absolute_url }}">{{ app.uni}} <br> {{ app.cv }} </li>
+    {% empty %}
+      <li class="list-group-item">No Applications yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
