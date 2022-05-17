@@ -46,7 +46,7 @@ class UniversityDetailView(DetailView):
 def ApplyView(request):
     submitted = False
     if request.method == "POST":
-        form = ApplicationForm(request.POST)
+        form = ApplicationForm(request.POST,initial={'user': request.user})
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/apply?submitted=True')
@@ -91,8 +91,14 @@ def ProfilePageView(request):
     submitted = False
     if request.method == "POST":
         form = UniversityProfileForm(request.POST,request.FILES)
+        print (form.fields['name'])
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            print(request.user)
+            print(obj.user)
+            obj.user = request.user
+            print(obj.user)
+            obj.save()
             return HttpResponseRedirect('/profile?submitted=True')
     else:
         form = UniversityProfileForm

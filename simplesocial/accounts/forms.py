@@ -40,5 +40,10 @@ class UniversityProfileForm(ModelForm):
             'phone': forms.TextInput(attrs={'class':'form-control'}),
             'location': forms.TextInput(attrs={'class':'form-control'}),
             'about': forms.TextInput(attrs={'class':'form-control'}),
-
         }
+
+        def __init__(self, *args, **kwargs):
+            # self.fields['user'] = kwargs.pop('user', None)
+            # print(user)
+            self.user = user
+            super(UniversityProfileForm, self).__init__(*args, **kwargs)

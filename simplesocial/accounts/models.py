@@ -46,7 +46,7 @@ class Application(models.Model):
     cv = models.CharField(max_length=120)
 
     def __str__(self):
-        return "Application Number " + self.id
+        return "Application Number " + str(self.id)
 
     def get_absolute_url(self):
         return reverse("application-detail", args=[str(self.id)])
