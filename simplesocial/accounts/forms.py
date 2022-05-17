@@ -35,10 +35,10 @@ class UniversityProfileForm(ModelForm):
 
         widgets = {
             'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
-            # 'website': forms.TextInput(attrs={'class':'form-control'}),
-            # 'name': forms.TextInput(attrs={'class':'form-control'}),
-            # 'phone': forms.TextInput(attrs={'class':'form-control'}),
-            # 'location': forms.TextInput(attrs={'class':'form-control'}),
-            # 'about': forms.TextInput(attrs={'class':'form-control'}),
+            'website': forms.TextInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'phone': forms.TextInput(attrs={'class':'form-control'}),
+            'location': forms.TextInput(attrs={'class':'form-control'}),
+            'about': forms.TextInput(attrs={'class':'form-control'}),
 
         }
