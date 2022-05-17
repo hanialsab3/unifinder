@@ -46,6 +46,7 @@ urlpatterns = [
     path('apply/',views.ApplyView,name='apply'),
     path('applications', views.ApplicationListView.as_view(), name='application-list'),
     path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application-detail'),
+    path('profile/', views.ProfilePageView, name='profile'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

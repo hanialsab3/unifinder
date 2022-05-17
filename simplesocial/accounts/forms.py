@@ -26,3 +26,19 @@ class ApplicationForm(ModelForm):
             'motivation': forms.TextInput(attrs={'class':'form-control'}),
             'cv': forms.TextInput(attrs={'class':'form-control'}),
         }
+
+
+class UniversityProfileForm(ModelForm):
+    class Meta:
+        model = University
+        fields = ('profile_picture','website','name','phone','location','about')
+
+        widgets = {
+            'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
+            # 'website': forms.TextInput(attrs={'class':'form-control'}),
+            # 'name': forms.TextInput(attrs={'class':'form-control'}),
+            # 'phone': forms.TextInput(attrs={'class':'form-control'}),
+            # 'location': forms.TextInput(attrs={'class':'form-control'}),
+            # 'about': forms.TextInput(attrs={'class':'form-control'}),
+
+        }

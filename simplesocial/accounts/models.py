@@ -45,5 +45,8 @@ class Application(models.Model):
     motivation = models.CharField(max_length=120)  #file
     cv = models.CharField(max_length=120)
 
+    def __str__(self):
+        return "Application Number " + self.id
+
     def get_absolute_url(self):
         return reverse("application-detail", args=[str(self.id)])

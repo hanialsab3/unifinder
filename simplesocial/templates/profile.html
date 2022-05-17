@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <h1>{{ object.id }}</h1>
+
+    <h1> Your Profile </h1>
+    <br>
+    {% if submitted %}
+        Your Profile Was Updated Successfully
+
+    {% else %}
+    <form class="" method="post" enctype='multipart/form-data'>
+      {% csrf_token %}
+
+      {{ form.as_p }}
+
+      <input type="submit"  value="Submit" class="btn btn-secondary ">
+
+    </form>
+    {% endif %}
+
+
+{% endblock %}

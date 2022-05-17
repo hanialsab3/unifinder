@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from accounts.forms import ApplicationForm
+from accounts.forms import ApplicationForm, UniversityProfileForm
 
 
 class TestPage(TemplateView):
@@ -76,3 +76,26 @@ class ApplicationDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+# class ProfilePage(DetailView):
+#     model = University
+#     paginate_by = 100  # if pagination is desired
+#     template_name = 'profile.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['now'] = timezone.now()
+#         return context
+
+def ProfilePageView(request):
+    submitted = False
+    if request.method == "POST":
+        form = UniversityProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/profile?submitted=True')
+    else:
+        form = UniversityProfileForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'profile.html', {'form':form, 'submitted':submitted})
