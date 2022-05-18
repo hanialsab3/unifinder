@@ -11,7 +11,7 @@ from django.urls import reverse
 #         return "@{}".format(self.username)
 
 class University(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     profile_picture = models.ImageField(null=True, blank=True)
     website = models.CharField(max_length=120)
     name = models.CharField(max_length=120, null=True)
@@ -32,9 +32,9 @@ class University(models.Model):
         return reverse("university-detail", args=[str(self.id)])
 
 class Student(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     application_debug = models.CharField(max_length=120)
-    uni = models.ManyToManyField(University, null=True)
+    uni = models.ManyToManyField(University)
     def __str__(self):
         return "Student: " + self.user.get_full_name()
 
