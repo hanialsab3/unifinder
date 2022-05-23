@@ -88,6 +88,7 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     )
 }
 

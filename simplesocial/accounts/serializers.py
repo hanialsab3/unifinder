@@ -29,4 +29,4 @@ class StudentSerializer(serializers.ModelSerializer):
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
-        fields = ['id','uni','motivation','cv']
+        fields = ['id','student','uni','motivation','cv']

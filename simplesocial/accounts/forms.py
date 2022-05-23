@@ -19,10 +19,11 @@ class UserCreateForm(UserCreationForm):
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
-        fields = ('uni','motivation',"cv")
+        fields = ('uni','student','motivation',"cv")
 
         widgets = {
             'uni': forms.Select(attrs={'class':'form-select'}),
+            'student': forms.Select(attrs={'class':'form-select'}),
             'motivation': forms.TextInput(attrs={'class':'form-control'}),
             'cv': forms.TextInput(attrs={'class':'form-control'}),
         }

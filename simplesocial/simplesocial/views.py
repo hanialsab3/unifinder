@@ -22,15 +22,15 @@ class HomePage(TemplateView):
 class DebugView(TemplateView):
     template_name = 'debug.html'
 
-# class UniversityListView(ListView):
-#     model = University
-#     paginate_by = 100  # if pagination is desired
-#     template_name = 'university_list.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['now'] = timezone.now()
-#         return context
+class UniversityListView(ListView):
+    model = University
+    paginate_by = 100  # if pagination is desired
+    template_name = 'university_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
 
 
 class UniversityDetailView(DetailView):
