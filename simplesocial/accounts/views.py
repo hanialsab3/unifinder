@@ -46,13 +46,12 @@ class StudentViewSet(viewsets.ModelViewSet):
 class ApplicationUserWritePermission(BasePermission):
     message = "Editing application is restricted to the student only."
 
+
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
             return True
 
-            return obj.student.user == request.user
-            print(obj.student.user)
-            print(request.user)
+        return obj.student.user == request.user
 
 
 class ApplicationViewSet(viewsets.ModelViewSet, ApplicationUserWritePermission):
