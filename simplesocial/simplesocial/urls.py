@@ -20,7 +20,8 @@ from rest_framework import routers
 from . import views
 from accounts.views import UniversityViewSet, StudentViewSet,UserViewSet, ApplicationViewSet
 from rest_framework.authtoken.views import obtain_auth_token
-
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -47,6 +48,12 @@ urlpatterns = [
     path('applications', views.ApplicationListView.as_view(), name='application-list'),
     path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application-detail'),
     path('profile/', views.ProfilePageView, name='profile'),
+    path('docs/', include_docs_urls(title='UnifinderAPI')),
+    path('schema', get_schema_view(
+        title="Unifinder API",
+        description="API for updating records",
+        version="1.0.0"
+    ), name='openapi-schema'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

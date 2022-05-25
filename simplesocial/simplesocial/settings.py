@@ -89,7 +89,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
         # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    )
+        ),
+        'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
