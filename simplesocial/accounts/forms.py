@@ -43,8 +43,12 @@ class UniversityProfileForm(ModelForm):
             'about': forms.TextInput(attrs={'class':'form-control'}),
         }
 
+
         def __init__(self, *args, **kwargs):
             # self.fields['user'] = kwargs.pop('user', None)
             # print(user)
+            print(user)
+            if model.objects.filter(user=1).exists():
+                raise ValidationError("This user name already created a University!!!")
             self.user = user
             super(UniversityProfileForm, self).__init__(*args, **kwargs)

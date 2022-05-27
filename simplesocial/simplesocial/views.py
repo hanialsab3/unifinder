@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from accounts.forms import ApplicationForm, UniversityProfileForm
+from django.core.exceptions import ValidationError
 
 
 class TestPage(TemplateView):
@@ -88,20 +89,23 @@ class ApplicationDetailView(DetailView):
 #         return context
 
 def ProfilePageView(request):
+    model = University
     submitted = False
+    exists = False
     if request.method == "POST":
         form = UniversityProfileForm(request.POST,request.FILES)
-        print (form.fields['name'])
         if form.is_valid():
+            if model.objects.filter(user=request.user).exists():
+            # raise ValidationError("This user name already created a University")
+                return HttpResponseRedirect('/profile?exists=True')
             obj = form.save(commit=False)
-            print(request.user)
-            print(obj.user)
             obj.user = request.user
-            print(obj.user)
             obj.save()
             return HttpResponseRedirect('/profile?submitted=True')
     else:
         form = UniversityProfileForm
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'profile.html', {'form':form, 'submitted':submitted})
+        if 'exists' in request.GET:
+            exists = True
+    return render(request, 'profile.html', {'form':form, 'submitted':submitted, 'exists':exists})

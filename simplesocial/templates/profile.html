@@ -3,13 +3,20 @@
 {% block content %}
     <h1>{{ user.username }}</h1>
     <h1>{{ object.id }}</h1>
-
+    <h1>{{ object }}</h1>
     <h1> Your Profile </h1>
     <br>
     {% if submitted %}
+
         Your Profile Was Updated Successfully
 
+
+    {% elif exists %}
+      <h2 class="text-danger"> This user has already created a university </h2>
+
+
     {% else %}
+
     <form class="" method="post" enctype='multipart/form-data'>
       {% csrf_token %}
 
