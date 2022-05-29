@@ -4,10 +4,14 @@
 <div class="container">
 
   <h1>Applications: </h1><br>
-
+  <h2>{{ user }}</h2>
   <ul class="list-group">
     {% for app in object_list %}
+    {% if  app.student.user  ==  user  %}
+
       <li class="list-group-item" ><a href="{{ app.get_absolute_url }}">{{ app.uni}} <br> {{ app.cv }} </li>
+
+    {% endif %}
     {% empty %}
       <li class="list-group-item">No Applications yet.</li>
     {% endfor %}

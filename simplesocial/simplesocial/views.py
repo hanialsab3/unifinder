@@ -61,6 +61,7 @@ def ApplyView(request):
 class ApplicationListView(ListView):
     model = Application
     paginate_by = 100  # if pagination is desired
+    # queryset = Application.objects.filter(student=self.request.user)
     template_name = 'application_list.html'
 
     def get_context_data(self, **kwargs):
