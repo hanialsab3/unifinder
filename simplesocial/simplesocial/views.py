@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.utils import timezone
-from accounts.models import University, Student, Application
+from accounts.models import University, Student, Application, Program
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -41,6 +41,7 @@ class UniversityDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
+        context['programs'] = Program.objects.all()
         return context
 
 

@@ -34,9 +34,9 @@ class University(models.Model):
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     application_debug = models.CharField(max_length=120)
-    uni = models.ManyToManyField(University)
+    # uni = models.ManyToManyField(University)
     def __str__(self):
-        return "Student: " + self.user.get_full_name()
+        return "Student: " + self.user.get_username()
 
 
 class Application(models.Model):
@@ -50,3 +50,11 @@ class Application(models.Model):
 
     def get_absolute_url(self):
         return reverse("application-detail", args=[str(self.id)])
+
+class Program(models.Model):
+    name =  models.CharField(max_length=120)
+    uni = models.ForeignKey(University, on_delete=models.CASCADE)
+    description = models.TextField()
+
+    def __str__(self):
+        return "Program " + str(self.id)

@@ -180,11 +180,14 @@
   </div>
 
 <!-- <img src="{{ object.profile_picture.url }}" alt="" >
-
-<h1>{{ object.name }}</h1>
-<p>{{ object.about }}</p>
-<p>Phone: {{ object.phone }}</p>
-<p>Website: {{ object.website }}</p> -->
+<!--  -->
+<h1>Programs:</h1>
+{% for c in programs %}
+    <h3>{{ c.name  }}</h3>
+{% endfor %}
+<!-- <p>{{ object.about }}</p> -->
+<!-- <p>Phone: {{ object.phone }}</p> -->
+<!-- <p>Website: {{ object.website }}</p> -->
 <!-- <p>Date: {{ now|date }}</p> -->
 
 {% endblock %}
