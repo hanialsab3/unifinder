@@ -111,3 +111,14 @@ def ProfilePageView(request):
         if 'exists' in request.GET:
             exists = True
     return render(request, 'profile.html', {'form':form, 'submitted':submitted, 'exists':exists})
+
+
+class ProgramDetailView(DetailView):
+
+    model = Program
+    template_name = 'program_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context

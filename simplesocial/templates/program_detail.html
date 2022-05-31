@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1 >{{object.uni}} {{ object.id }}</h1>
+<h3 style="color:blue">{{object.name}}</h3> <br>
+
+<p>{{ object.description }}</p>
+<!-- <p>Date: {{ now|date }}</p> -->
+<a href="{% url 'apply' %}"><button class="btn btn-primary">Apply</button></a>
+
+
+{% endblock %}

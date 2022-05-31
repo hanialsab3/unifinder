@@ -54,6 +54,8 @@ urlpatterns = [
         description="API for updating records",
         version="1.0.0"
     ), name='openapi-schema'),
+    path('programs/<int:pk>/', views.ProgramDetailView.as_view(), name='program-detail'),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

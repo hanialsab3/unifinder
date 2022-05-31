@@ -58,3 +58,6 @@ class Program(models.Model):
 
     def __str__(self):
         return "Program " + str(self.id)
+
+    def get_absolute_url(self):
+        return reverse("program-detail", args=[str(self.id)])

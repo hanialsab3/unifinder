@@ -182,8 +182,8 @@
 <!-- <img src="{{ object.profile_picture.url }}" alt="" >
 <!--  -->
 <h1>Programs:</h1>
-{% for c in programs %}
-    <h3>{{ c.name  }}</h3>
+{% for program in programs %}
+  <a href="{{ program.get_absolute_url }}"><h3>{{ program.name }}</h3>
 {% endfor %}
 <!-- <p>{{ object.about }}</p> -->
 <!-- <p>Phone: {{ object.phone }}</p> -->
