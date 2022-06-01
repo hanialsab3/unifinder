@@ -15,6 +15,19 @@ class UserCreateForm(UserCreationForm):
         self.fields['username'].label = "Display Name"
         self.fields['email'].label = "Email Address"
 
+class UniversityForm(ModelForm):
+    class Meta:
+        model = University
+        fields = ('profile_picture','website','name','phone','location','about')
+
+        widgets = {
+            'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'website': forms.TextInput(attrs={'class':'form-control'}),
+            'phone': forms.TextInput(attrs={'class':'form-control'}),
+            'location': forms.TextInput(attrs={'class':'form-control'}),
+            'about': forms.Textarea(attrs={'class':'form-control'}),
+        }
 
 class ApplicationForm(ModelForm):
     class Meta:

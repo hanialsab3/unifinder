@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView,UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.utils import timezone
@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from accounts.forms import ApplicationForm, UniversityProfileForm
+from accounts.forms import ApplicationForm, UniversityProfileForm, UniversityForm
 from django.core.exceptions import ValidationError
 
 
@@ -35,7 +35,6 @@ class UniversityListView(ListView):
 
 
 class UniversityDetailView(DetailView):
-
     model = University
     template_name = 'university_detail.html'
     def get_context_data(self, **kwargs):
@@ -43,6 +42,18 @@ class UniversityDetailView(DetailView):
         context['now'] = timezone.now()
         context['programs'] = Program.objects.all()
         return context
+
+class AddUniversityView(CreateView):
+    model = University
+    form_class = UniversityForm
+    template_name = 'add_university.html'
+
+
+
+class UpdateUniversityView(UpdateView):
+    model = University
+    template_name = 'update_university.html'
+    fields = ('profile_picture','name','website','phone','location','about')
 
 
 def ApplyView(request):
