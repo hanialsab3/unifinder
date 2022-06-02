@@ -9,9 +9,8 @@
 
 
 
-
     <form  method="post" >  <!-- enctype='multipart/form-data' -->
-      {# <div class=""> #}
+      <div class="form-group">
       {% csrf_token %}
 
       {{ form.as_p }}
@@ -19,8 +18,8 @@
       {# <buttom  class="btn btn-secondary "> Update </button> #}
       <input type="submit"  value="Update" class="btn btn-secondary">
 
-      {# </div> #}
-    </form>
+      {# </form> #}
+</div>
 
 
 

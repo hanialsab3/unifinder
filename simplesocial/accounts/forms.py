@@ -18,7 +18,7 @@ class UserCreateForm(UserCreationForm):
 class UniversityForm(ModelForm):
     class Meta:
         model = University
-        fields = ('profile_picture','website','name','phone','location','about')
+        fields = ('profile_picture','name','website','phone','location','about')
 
         widgets = {
             'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),

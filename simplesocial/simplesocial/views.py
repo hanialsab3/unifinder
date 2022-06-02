@@ -53,7 +53,8 @@ class AddUniversityView(CreateView):
 class UpdateUniversityView(UpdateView):
     model = University
     template_name = 'update_university.html'
-    fields = ('profile_picture','name','website','phone','location','about')
+    form_class = UniversityForm
+    # fields = ('profile_picture','name','website','phone','location','about')
 
 
 def ApplyView(request):
