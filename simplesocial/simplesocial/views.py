@@ -55,6 +55,14 @@ class AddUniversityView(CreateView):
     form_class = UniversityForm
     template_name = 'add_university.html'
 
+class StudentProfileView(DetailView):
+    model = Student
+    template_name = 'student_profile.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
 class AddStudentView(CreateView):
     model = Student
     form_class = StudentForm

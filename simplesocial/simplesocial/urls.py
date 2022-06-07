@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^test/$',views.TestPage.as_view(),name='test'),
     url(r'^thanks/$',views.ThanksPage.as_view(),name='thanks'),
     path('students/add/', views.AddStudentView.as_view(), name='add_student'),
+    path('students/<int:pk>/', views.StudentProfileView.as_view(), name='student_profile'),
     path('universities/', views.UniversityListView.as_view(), name='university-list'),
     path('universities/<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
     path('universities/add/', views.AddUniversityView.as_view(), name='add_university'),
