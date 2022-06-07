@@ -36,8 +36,13 @@ class Student(models.Model):
     application_debug = models.CharField(max_length=120)
     # uni = models.ManyToManyField(University)
     def __str__(self):
-        return "Student: " + self.user.get_username()
+        if hasattr(self.user,'get_username'):
+            return "Student: " + self.user.get_username()
+        else:
+            return "No Username"
 
+    def get_absolute_url(self):
+        return reverse("home")
 
 class Application(models.Model):
     student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)

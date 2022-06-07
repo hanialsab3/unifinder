@@ -29,7 +29,7 @@
         <ul class='nav navbar-nav navbar-right'>
           {% if user.is_authenticated %}
             <li> <a href="#">Post</a></li>
-            <li> <a href="{% url 'add_university' %}">Update University</a></li>
+            <!-- <li> <a href="% url 'update_university' uni.pk %">Update University</a></li> -->
             <li> <a href="{% url 'add_university' %}">Create University</a></li>
             <li> <a href="{% url 'admin:index' %}">Admin</a></li>
             <li> <a href="{% url 'profile' %}">Profile</a></li>

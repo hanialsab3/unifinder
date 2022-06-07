@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from accounts.forms import ApplicationForm, UniversityProfileForm, UniversityForm
+from accounts.forms import ApplicationForm, UniversityProfileForm, UniversityForm, StudentForm
 from django.core.exceptions import ValidationError
 
 
@@ -19,6 +19,13 @@ class ThanksPage(TemplateView):
 
 class HomePage(TemplateView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        context['students'] = Student.objects.all()[:5]
+        context['universities'] = University.objects.all()[:5]
+        return context
 
 class DebugView(TemplateView):
     template_name = 'debug.html'
@@ -48,7 +55,10 @@ class AddUniversityView(CreateView):
     form_class = UniversityForm
     template_name = 'add_university.html'
 
-
+class AddStudentView(CreateView):
+    model = Student
+    form_class = StudentForm
+    template_name = 'add_student.html'
 
 class UpdateUniversityView(UpdateView):
     model = University

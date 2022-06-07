@@ -29,6 +29,15 @@ class UniversityForm(ModelForm):
             'about': forms.Textarea(attrs={'class':'form-control'}),
         }
 
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ('application_debug',)
+
+        widgets = {
+            'application_debug': forms.TextInput(attrs={'class':'form-control'}),
+        }
+
 class ApplicationForm(ModelForm):
     class Meta:
         model = Application
@@ -55,6 +64,7 @@ class UniversityProfileForm(ModelForm):
             'location': forms.TextInput(attrs={'class':'form-control'}),
             'about': forms.TextInput(attrs={'class':'form-control'}),
         }
+
 
 
         def __init__(self, *args, **kwargs):
