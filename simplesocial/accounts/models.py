@@ -42,7 +42,7 @@ class Student(models.Model):
             return "No Username"
 
     def get_absolute_url(self):
-        return reverse("home")
+        return reverse("student_profile", args=[str(self.id)])
 
 class Application(models.Model):
     student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)

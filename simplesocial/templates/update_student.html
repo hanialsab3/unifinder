@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <h1>{{ object.id }}</h1>
+    <h1>{{ object }}</h1>
+    <h1> Studnet Profile </h1>
+
+
+
+    <form  method="post" enctype='multipart/form-data'>
+      <div class="form-group">
+      {% csrf_token %}
+
+      {{ form.as_p }}
+
+      {# <buttom  class="btn btn-secondary "> Update </button> #}
+      <input type="submit"  value="Update" class="btn btn-secondary">
+
+      {# </form> #}
+</div>
+
+
+
+
+{% endblock %}

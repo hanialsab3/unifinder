@@ -68,6 +68,12 @@ class AddStudentView(CreateView):
     form_class = StudentForm
     template_name = 'add_student.html'
 
+class UpdateStudentView(UpdateView):
+    model = Student
+    form_class = StudentForm
+    template_name = 'add_student.html'
+    # fields = 
+
 class UpdateUniversityView(UpdateView):
     model = University
     template_name = 'update_university.html'
