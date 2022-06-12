@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
-from .models import University, Student, Application
+from .models import University, Student, Application, Program
 
 class UserCreateForm(UserCreationForm):
     class Meta:
@@ -75,3 +75,13 @@ class UniversityProfileForm(ModelForm):
                 raise ValidationError("This user name already created a University!!!")
             self.user = user
             super(UniversityProfileForm, self).__init__(*args, **kwargs)
+
+class ProgramForm(ModelForm):
+    class Meta:
+        model = Program
+        fields = ('name','description')
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'description': forms.Textarea(attrs={'class':'form-control'}),
+        }

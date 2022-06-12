@@ -48,6 +48,9 @@ urlpatterns = [
     path('universities/<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
     path('universities/add/', views.AddUniversityView.as_view(), name='add_university'),
     path('universities/edit/<int:pk>/', views.UpdateUniversityView.as_view(), name='update_university'),
+    path('programs/<int:pk>/', views.ProgramDetailView.as_view(), name='program-detail'),
+    path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
+    path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
     path('debug/',views.DebugView.as_view(),name='debug'),
     path('apply/',views.ApplyView,name='apply'),
     path('applications', views.ApplicationListView.as_view(), name='application-list'),
@@ -59,7 +62,6 @@ urlpatterns = [
         description="API for updating records",
         version="1.0.0"
     ), name='openapi-schema'),
-    path('programs/<int:pk>/', views.ProgramDetailView.as_view(), name='program-detail'),
 
 ]
 

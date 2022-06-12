@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from accounts.forms import ApplicationForm, UniversityProfileForm, UniversityForm, StudentForm
+from accounts.forms import ApplicationForm, UniversityProfileForm, UniversityForm, StudentForm, ProgramForm
 from django.core.exceptions import ValidationError
 
 
@@ -72,7 +72,7 @@ class UpdateStudentView(UpdateView):
     model = Student
     form_class = StudentForm
     template_name = 'add_student.html'
-    # fields = 
+    # fields =
 
 class UpdateUniversityView(UpdateView):
     model = University
@@ -158,3 +158,14 @@ class ProgramDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+class AddProgramView(CreateView):
+    model = Program
+    form_class = ProgramForm
+    template_name = 'add_program.html'
+
+class UpdateProgramView(UpdateView):
+    model = Program
+    form_class = ProgramForm
+    template_name = 'add_program.html'
+    # fields =
