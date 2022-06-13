@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <h1>{{ object.id }}</h1>
+    <h1>{{ object }}</h1>
+    <h1> Delete University </h1>
+
+
+    <h3>Delete: {{ object.name }}</h3>
+    <br>
+    <form  method="post" enctype='multipart/form-data'>
+      <div class="form-group">
+      {% csrf_token %}
+      <strong>Are you sure?</strong><br><br>
+      {# <buttom  class="btn btn-secondary "> Update </button> #}
+      <input type="submit"  value="Delete" class="btn btn-danger">
+
+      {# </form> #}
+</div>
+
+
+
+
+{% endblock %}

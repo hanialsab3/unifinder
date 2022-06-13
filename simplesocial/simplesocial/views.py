@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, CreateView,UpdateView
+from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.utils import timezone
@@ -55,6 +55,17 @@ class AddUniversityView(CreateView):
     form_class = UniversityForm
     template_name = 'add_university.html'
 
+class UpdateUniversityView(UpdateView):
+    model = University
+    template_name = 'update_university.html'
+    form_class = UniversityForm
+    # fields = ('profile_picture','name','website','phone','location','about')
+
+class DeleteUniversityView(DeleteView):
+    model = University
+    template_name = 'delete_university.html'
+    success_url = reverse_lazy('home')
+
 class StudentProfileView(DetailView):
     model = Student
     template_name = 'student_profile.html'
@@ -73,12 +84,6 @@ class UpdateStudentView(UpdateView):
     form_class = StudentForm
     template_name = 'add_student.html'
     # fields =
-
-class UpdateUniversityView(UpdateView):
-    model = University
-    template_name = 'update_university.html'
-    form_class = UniversityForm
-    # fields = ('profile_picture','name','website','phone','location','about')
 
 
 def ApplyView(request):

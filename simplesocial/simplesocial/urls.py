@@ -48,6 +48,7 @@ urlpatterns = [
     path('universities/<int:pk>/', views.UniversityDetailView.as_view(), name='university-detail'),
     path('universities/add/', views.AddUniversityView.as_view(), name='add_university'),
     path('universities/edit/<int:pk>/', views.UpdateUniversityView.as_view(), name='update_university'),
+    path('universities/<int:pk>/remove', views.DeleteUniversityView.as_view(), name='delete_university'),
     path('programs/<int:pk>/', views.ProgramDetailView.as_view(), name='program-detail'),
     path('programs/add/', views.AddProgramView.as_view(), name='add_program'),
     path('programs/edit/<int:pk>/', views.UpdateProgramView.as_view(), name='update_program'),
