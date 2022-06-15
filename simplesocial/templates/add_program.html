@@ -2,6 +2,7 @@
 {% load bootstrap5 %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <h1>Create Program</h1>
 <br>
@@ -17,6 +18,8 @@
 </div>
 
 <!-- </form> -->
-
+{% else %}
+  Please Log in first.
+{% endif %}
 
 {% endblock %}

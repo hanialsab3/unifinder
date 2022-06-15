@@ -2,6 +2,8 @@
 {% load bootstrap5 %}
 
 {% block content %}
+{% if user.is_authenticated %}
+
     <h1>{{ user.username }}</h1>
     <h1>{{ object.id }}</h1>
     <h1>{{ object }}</h1>
@@ -23,5 +25,7 @@
 
 
 
-
+{% else %}
+  Please Log in first.
+{% endif %}
 {% endblock %}

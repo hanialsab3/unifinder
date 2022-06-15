@@ -2,6 +2,7 @@
 {% load bootstrap5 %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <h1>Create University</h1>
 <br>
@@ -18,5 +19,7 @@
 
 <!-- </form> -->
 
-
+{% else %}
+  Please Log in first.
+{% endif %}
 {% endblock %}

@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <h1 >{{object.uni}} {{ object.id }}</h1>
 <h3 style="color:blue">{{object.name}}</h3> <br>
@@ -10,5 +11,7 @@
 <!-- <p>Date: {{ now|date }}</p> -->
 <a href="{% url 'apply' %}"><button class="btn btn-primary">Apply</button></a>
 
-
+{% else %}
+  Please Log in first.
+{% endif %}
 {% endblock %}

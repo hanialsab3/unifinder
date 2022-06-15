@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <h1 >{{ object.id }}</h1>
 <h3 style="color:blue">CV:</h3> <br>
@@ -10,5 +11,7 @@
 <p>{{ object.motivation }}</p>
 <!-- <p>Date: {{ now|date }}</p> -->
 
-
+{% else %}
+  Please Log in first.
+{% endif %}
 {% endblock %}

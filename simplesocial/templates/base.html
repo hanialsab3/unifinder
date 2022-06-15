@@ -28,13 +28,16 @@
 
         <ul class='nav navbar-nav navbar-right'>
           {% if user.is_authenticated %}
+            <!-- {% if user.student.id > 0 %}
+            <li> <a href="#">hi </a></li>
+            {% endif %} -->
             <li> <a href="#">Post</a></li>
             <!-- <li> <a href="% url 'update_university' uni.pk %">Update University</a></li> -->
             <li> <a href="{% url 'add_university' %}">Create University</a></li>
             <li> <a href="{% url 'admin:index' %}">Admin</a></li>
             <li> <a href="{% url 'profile' %}">Profile</a></li>
             <!-- <li> <a href="">API</a></li> -->
-            <li> <a href="{% url 'accounts:logout' %}">Log Out</a></li>
+            <li> <a href="{% url 'logout' %}">Log Out</a></li>
           {% else %}
             <li> <a href="#">Groups</a></li>
             <li> <a href="{% url 'login'%}">Log In</a></li>
