@@ -1,5 +1,5 @@
 # from django.contrib import auth
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
@@ -9,6 +9,9 @@ from django.urls import reverse
 #
 #     def __str__(self):
 #         return "@{}".format(self.username)
+# class User(AbstractUser):
+#     is_student = models.BooleanField('student status', default=False)
+#     is_teacher = models.BooleanField('teacher status', default=False)
 
 class University(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
