@@ -182,10 +182,18 @@
 <!-- <img src="{{ object.profile_picture.url }}" alt="" >
 <!--  -->
 <h1>Programs:</h1>
+{% if user.id == program.uni.user.id %}
+  <a href="{% url 'add_program' %}">Add</a>
+{% endif %}
 {% for program in programs %}
-  <a href="{{ program.get_absolute_url }}"><h3>{{ program.name }}</h3>
+  <h3>current user: {{user}}</h3>
+  <h3>university user: {{program.uni.user}}</h3>
+  <a href="{{ program.get_absolute_url }}"><h3>{{ program.name }}</h3></a>
+  {% if user.id == program.uni.user.id %}
+    </a><a href="{% url 'update_program' program.pk %}">edit</a>
+  {% endif %}
 {% endfor %}
-  
+
 <!-- <p>{{ object.about }}</p> -->
 <!-- <p>Phone: {{ object.phone }}</p> -->
 <!-- <p>Website: {{ object.website }}</p> -->

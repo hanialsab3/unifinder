@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Edit Program</h1>
+<br>
+
+{% if user.id == program.uni.user.id %}
+  <div class="form-group">
+
+    <form  method="post" enctype='multipart/form-data' >
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class = "btn btn-secondary">Create</button>
+
+
+  </div>
+  {% else %}
+    This is not your program!
+  {% endif %}  
+<!-- </form> -->
+{% else %}
+  Please Log in first.
+{% endif %}
+
+{% endblock %}

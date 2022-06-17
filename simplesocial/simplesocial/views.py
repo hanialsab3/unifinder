@@ -172,5 +172,5 @@ class AddProgramView(CreateView):
 class UpdateProgramView(UpdateView):
     model = Program
     form_class = ProgramForm
-    template_name = 'add_program.html'
+    template_name = 'update_program.html'
     # fields =

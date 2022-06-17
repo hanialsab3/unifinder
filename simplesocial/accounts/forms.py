@@ -79,7 +79,7 @@ class UniversityProfileForm(ModelForm):
 class ProgramForm(ModelForm):
     class Meta:
         model = Program
-        fields = ('name','description')
+        fields = ('uni','name','description')
 
         widgets = {
             'name': forms.TextInput(attrs={'class':'form-control'}),
