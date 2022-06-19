@@ -11,12 +11,13 @@ from .models import University, Student, Application
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from .forms import SignUpForm
 
 from . import forms
 # Create your views here.
 
 class SignUp(CreateView):
-    form_class = forms.UserCreationForm
+    form_class = SignUpForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 

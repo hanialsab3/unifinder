@@ -86,18 +86,18 @@ class UpdateStudentView(UpdateView):
     # fields =
 
 
-def ApplyView(request):
-    submitted = False
-    if request.method == "POST":
-        form = ApplicationForm(request.POST,initial={'user': request.user})
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/apply?submitted=True')
-    else:
-        form = ApplicationForm
-        if 'submitted' in request.GET:
-            submitted = True
-    return render(request, 'apply.html', {'form':form, 'submitted':submitted})
+# def ApplyView(request):
+#     submitted = False
+#     if request.method == "POST":
+#         form = ApplicationForm(request.POST,initial={'user': request.user})
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect('/apply?submitted=True')
+#     else:
+#         form = ApplicationForm
+#         if 'submitted' in request.GET:
+#             submitted = True
+#     return render(request, 'apply.html', {'form':form, 'submitted':submitted})
 
 
 class ApplicationListView(ListView):
@@ -120,6 +120,11 @@ class ApplicationDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+class AddApplicationView(CreateView):
+    model = Application
+    form_class = ApplicationForm
+    template_name = 'add_application.html'
 
 # class ProfilePage(DetailView):
 #     model = University

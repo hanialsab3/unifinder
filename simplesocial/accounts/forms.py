@@ -1,26 +1,31 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
 from .models import University, Student, Application, Program
 
-class UserCreateForm(UserCreationForm):
+class SignUpForm(UserCreationForm):                           #add init function in case the boostrap is messed up
+    email = forms.EmailField()
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)
+
     class Meta:
-        fields = ('username','email','password1','password2')
-        model = get_user_model()
+        model = User
+        fields = ('username','first_name','last_name','email','password1','password2')
 
 
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.fields['username'].label = "Display Name"
-        self.fields['email'].label = "Email Address"
+    # def __init__(self,*args,**kwargs):
+    #     super().__init__(*args,**kwargs)
+    #     self.fields['username'].label = "Display Name"
+    #     self.fields['email'].label = "Email Address"
 
 class UniversityForm(ModelForm):
     class Meta:
         model = University
-        fields = ('profile_picture','name','website','phone','location','about')
+        fields = ('user','profile_picture','name','website','phone','location','about')
 
         widgets = {
+            'user': forms.TextInput(attrs={'class':'form-control','value':'','id':'use', 'type':'hidden'}),
             'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
             'name': forms.TextInput(attrs={'class':'form-control'}),
             'website': forms.TextInput(attrs={'class':'form-control'}),
@@ -32,9 +37,10 @@ class UniversityForm(ModelForm):
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ('application_debug',)
+        fields = ('user','application_debug',)
 
         widgets = {
+            'user': forms.TextInput(attrs={'class':'form-control','value':'','id':'use', 'type':'hidden'}),
             'application_debug': forms.TextInput(attrs={'class':'form-control'}),
         }
 
