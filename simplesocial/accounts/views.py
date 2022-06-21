@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import BasePermission, IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly, SAFE_METHODS
@@ -10,7 +10,7 @@ from .serializers import UniversitySerializer, StudentSerializer, UserSerializer
 from .models import University, Student, Application
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .forms import SignUpForm
 
 from . import forms
@@ -20,6 +20,14 @@ class SignUp(CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+
+class UserEditView(UpdateView):
+    form_class = UserChangeForm
+    success_url = reverse_lazy('home')
+    template_name = 'registration/edit_profile.html'
+
+    def get_object(self):
+        return self.request.user
 
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer

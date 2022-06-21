@@ -1,7 +1,7 @@
 from django.conf.urls import url,include
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import SignUp
+from .views import SignUp, UserEditView
 
 
 app_name = 'accounts'
@@ -14,5 +14,6 @@ urlpatterns = [
     #     name='login'),
     # url(r'logout/$',auth_views.LogoutView.as_view(),name='logout'),
     path('signup/',SignUp.as_view(),name='signup'),
+    path('edit_profile/',UserEditView.as_view(),name='edit_profile'),
 
 ]
