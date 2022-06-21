@@ -11,7 +11,7 @@ from .models import University, Student, Application
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .forms import SignUpForm
+from .forms import SignUpForm, EditProfileForm
 
 from . import forms
 # Create your views here.
@@ -22,7 +22,7 @@ class SignUp(CreateView):
     template_name = 'registration/signup.html'
 
 class UserEditView(UpdateView):
-    form_class = UserChangeForm
+    form_class = EditProfileForm
     success_url = reverse_lazy('home')
     template_name = 'registration/edit_profile.html'
 

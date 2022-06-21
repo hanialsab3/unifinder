@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.forms import ModelForm
 from .models import University, Student, Application, Program
@@ -13,11 +13,26 @@ class SignUpForm(UserCreationForm):                           #add init function
         model = User
         fields = ('username','first_name','last_name','email','password1','password2')
 
+        # def __init__(self,*args,**kwargs):
+        #     super().__init__(*args,**kwargs)
+        #     self.fields['username'].label = "Display Name"
+        #     self.fields['email'].label = "Email Address"
 
-    # def __init__(self,*args,**kwargs):
-    #     super().__init__(*args,**kwargs)
-    #     self.fields['username'].label = "Display Name"
-    #     self.fields['email'].label = "Email Address"
+class EditProfileForm(UserChangeForm):                           #add init function in case the boostrap is messed up
+    email = forms.EmailField()
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)
+    # username = forms.CharField(max_length=100)
+    last_login = forms.CharField(max_length=100)
+    is_superuser = forms.CharField(max_length=100, widget=forms.CheckboxInput())
+    is_staff = forms.CharField(max_length=100, widget=forms.CheckboxInput())
+    is_active = forms.CharField(max_length=100, widget=forms.CheckboxInput())
+    date_joined = forms.CharField(max_length=100)
+
+    class Meta:
+        model = User
+        fields = ('username','first_name','last_name','email','password', 'last_login', 'is_superuser', 'is_staff', 'is_active', 'date_joined')
+
 
 class UniversityForm(ModelForm):
     class Meta:
