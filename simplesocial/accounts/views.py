@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.models import User
@@ -12,9 +12,22 @@ from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .forms import SignUpForm, EditProfileForm
+from django.views.generic.detail import DetailView
 
 from . import forms
 # Create your views here.
+
+
+class ShowProfilePageView(DetailView):
+    model = Student
+    template_name = 'registration/student_profile.html'
+
+    def get_context_data(self, **kwargs):
+        students = Student.objects.all()
+        context = super(ShowProfilePageView, self).get_context_data(**kwargs)
+        page_student = get_object_or_404(Student, id=self.kwargs['pk'])
+        context["page_student"] = page_student
+        return context
 
 class SignUp(CreateView):
     form_class = SignUpForm

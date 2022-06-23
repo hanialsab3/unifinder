@@ -26,7 +26,11 @@
             <div class="card">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
+                  {% if  object.profile_picture %}
                   <img src="{{ object.profile_picture.url }}" alt="Admin" class="rounded-circle" width="150">
+                  {% else %}
+                      <img src="{% static "simplesocial/images/default_profile_pic.png" %}" alt="" class="rounded-circle" width="150">
+                  {% endif %}
                   <div class="mt-3">
                     <h4>{{ object.name }}</h4>
                     <p class="text-secondary mb-1">Private university in Paris, France</p>
@@ -179,8 +183,7 @@
       </div>
   </div>
 
-<!-- <img src="{{ object.profile_picture.url }}" alt="" >
-<!--  -->
+
 <h1>Programs:</h1>
 {% if user.id == program.uni.user.id %}
   <a href="{% url 'add_program' %}">Add</a>

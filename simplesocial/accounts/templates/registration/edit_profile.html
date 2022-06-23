@@ -4,6 +4,15 @@
 {% block content %}
 <div class="container">
   <h1>Edit Profile</h1>
+  <br>
+  {% if user.university %}
+    <p>University</p>
+    <p>{{user.university}}</p>
+  {% endif %}
+  {% if user.student %}
+    <p>Strudnet</p>
+    <p>{{user.student}}</p>
+  {% endif %}
   <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}

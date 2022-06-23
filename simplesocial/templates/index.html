@@ -11,5 +11,9 @@
         <a href="{% url 'application-list' %}">List of your Applications</a>
       {% endif %}
     {% endfor %}
+    <h3>To test profile</h3>
+    {% for o in students %}
+        <a href="{% url 'accounts:show_profile_page' o.id %}">{{o}}</a><hr>
+    {% endfor %}
 
 {% endblock %}
