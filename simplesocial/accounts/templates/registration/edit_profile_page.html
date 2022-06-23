@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Edit Profile Page </h1>
+<br>
+
+<div class="form-group">
+
+  <form  method="post" enctype='multipart/form-data' >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class = "btn btn-secondary">Update Profile Page</button>
+
+
+</div>
+
+<script type="text/javascript">
+     var user = "{{ user.id }}";
+     document.getElementById("use").value = user;
+</script>
+
+<!-- </form> -->
+
+{% else %}
+  Please Log in first.
+{% endif %}
+{% endblock %}

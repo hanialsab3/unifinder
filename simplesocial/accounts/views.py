@@ -18,6 +18,13 @@ from . import forms
 # Create your views here.
 
 
+class EditProfilePageView(UpdateView):
+    model = User
+    template_name = 'regestration/edit_profile_page.html'
+    fields = ['application_debug']
+    success_url = reverse_lazy('home')
+
+
 class ShowProfilePageView(DetailView):
     model = Student
     template_name = 'registration/student_profile.html'
