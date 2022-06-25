@@ -1,9 +1,11 @@
 {% extends "base.html" %}
-<!-- {% load bootstrap3 %} -->
-
+{% load bootstrap5 %}
 {% block content %}
+{% if user.is_authenticated %}
+{% if user.id == student.user.id or user.id == university.user.id  %}
+
 <div class="container">
-  <h1>Edit Profile</h1>
+  <h1>Edit Settings</h1>
   <br>
   {% if user.university %}
     <p>University</p>
@@ -16,7 +18,18 @@
   <form method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <input type="submit" class="btn btn-default" value="Update Profile">
+    <input type="submit" class="btn btn-primary" value="Update Profile">
   </form>
 </div>
+{% else %}
+You are not the correct user to edit this page
+{{user.id}}
+{{studet.user.id}}
+{% endif %}
+{% else %}
+  Please Log in first.
+{% endif %}
+
+
+
 {% endblock %}

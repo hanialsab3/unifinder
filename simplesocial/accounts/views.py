@@ -19,8 +19,8 @@ from . import forms
 
 
 class EditProfilePageView(UpdateView):
-    model = User
-    template_name = 'regestration/edit_profile_page.html'
+    model = Student
+    template_name = 'registration/edit_profile_page.html'
     fields = ['application_debug']
     success_url = reverse_lazy('home')
 
@@ -33,6 +33,25 @@ class ShowProfilePageView(DetailView):
         students = Student.objects.all()
         context = super(ShowProfilePageView, self).get_context_data(**kwargs)
         page_student = get_object_or_404(Student, id=self.kwargs['pk'])
+        context["page_student"] = page_student
+        return context
+
+
+class EditUniversityProfilePageView(UpdateView):
+    model = University
+    template_name = 'registration/edit_university_profile_page.html'
+    fields = ['profile_picture','website','name','phone','location','about']
+    success_url = reverse_lazy('home')
+
+
+class ShowUniversityProfilePageView(DetailView):
+    model = University
+    template_name = 'registration/university_profile.html'
+
+    def get_context_data(self, **kwargs):
+        universities = University.objects.all()
+        context = super(ShowUniversityProfilePageView, self).get_context_data(**kwargs)
+        page_student = get_object_or_404(University, id=self.kwargs['pk'])
         context["page_student"] = page_student
         return context
 

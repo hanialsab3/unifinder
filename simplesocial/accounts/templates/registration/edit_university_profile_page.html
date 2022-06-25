@@ -3,7 +3,6 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-{% if user.id == student.user.id %}
 
 <h1>Edit Profile Page </h1>
 <br>
@@ -24,9 +23,7 @@
 </script>
 
 <!-- </form> -->
-{% else %}
-You are not the correct user to edit this page
-{% endif %}
+
 {% else %}
   Please Log in first.
 {% endif %}
