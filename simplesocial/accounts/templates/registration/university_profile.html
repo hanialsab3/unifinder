@@ -4,9 +4,10 @@
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/profile.css'%}">
 {% endblock %}
-
-
 {% block content %}
+{% if user.is_authenticated %}
+{% if user.id == university.user.id %}
+
 
 <div class="container">
   <div class="main-body">
@@ -201,5 +202,12 @@
 <!-- <p>Phone: {{ object.phone }}</p> -->
 <!-- <p>Website: {{ object.website }}</p> -->
 <!-- <p>Date: {{ now|date }}</p> -->
+
+{% else %}
+You are not the correct user to edit this page
+{% endif %}
+{% else %}
+  Please Log in first.
+{% endif %}
 
 {% endblock %}

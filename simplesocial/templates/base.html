@@ -33,30 +33,26 @@
           <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
         {% if user.is_authenticated %}
-          {% if user.student %}
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Profile
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">Edit Settings</a></li>
+                {% if user.student %}
                 <li><a class="dropdown-item" href="{% url 'accounts:edit_profile_page' user.student.id %}">Edit Profile Page</a></li>
                 <li><a class="dropdown-item" href="{% url 'accounts:show_profile_page' user.student.id %}">Show Profile Page</a></li>
-              </ul>
-            </li>
-          {% endif %}
-          {% if user.university %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Profile
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">Edit Settings</a></li>
+                {% elif user.university %}
                 <li><a class="dropdown-item" href="{% url 'accounts:edit_university_profile_page' user.university.id %}">Edit University Profile Page</a></li>
                 <li><a class="dropdown-item" href="{% url 'accounts:show_university_profile_page' user.university.id %}">Show University Profile Page</a></li>
-              </ul>
-            </li>
-          {% endif %}
+
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Create Profile Page</a>
+                </li>
+                {% endif %}
+          </ul>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
         </li>
