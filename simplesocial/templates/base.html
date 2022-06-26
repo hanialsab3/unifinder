@@ -42,10 +42,14 @@
                 {% if user.student %}
                 <li><a class="dropdown-item" href="{% url 'accounts:edit_profile_page' user.student.id %}">Edit Profile Page</a></li>
                 <li><a class="dropdown-item" href="{% url 'accounts:show_profile_page' user.student.id %}">Show Profile Page</a></li>
-                {% elif user.university %}
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'accounts:create_university_profile_page' %}">Create Profile Page</a>
+                </li>
+                {% endif %}
+                {% if user.university %}
                 <li><a class="dropdown-item" href="{% url 'accounts:edit_university_profile_page' user.university.id %}">Edit University Profile Page</a></li>
                 <li><a class="dropdown-item" href="{% url 'accounts:show_university_profile_page' user.university.id %}">Show University Profile Page</a></li>
-
                 {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="#">Create Profile Page</a>

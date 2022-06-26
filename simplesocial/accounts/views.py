@@ -11,12 +11,20 @@ from .models import University, Student, Application
 from rest_framework.authentication import TokenAuthentication
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .forms import SignUpForm, EditProfileForm
+from .forms import SignUpForm, EditProfileForm, ProfilePageUniverityForm
 from django.views.generic.detail import DetailView
-
+from django.views.generic.edit import CreateView
 from . import forms
 # Create your views here.
 
+class CreateUniversityProfilePageView(CreateView):
+    model = University
+    form_class = ProfilePageUniverityForm
+    template_name = "registration/create_university_profile_page.html"
+
+    def form_valid(self,form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class EditProfilePageView(UpdateView):
     model = Student

@@ -4,6 +4,23 @@ from django import forms
 from django.forms import ModelForm
 from .models import University, Student, Application, Program
 
+
+
+class ProfilePageUniverityForm(ModelForm):
+    class Meta:
+        model = University
+        fields = ('profile_picture','website','name','phone','location','about')
+
+        widgets = {
+            # 'profile_picture': forms.ClearableFileInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'website': forms.TextInput(attrs={'class':'form-control'}),
+            'phone': forms.TextInput(attrs={'class':'form-control'}),
+            'location': forms.TextInput(attrs={'class':'form-control'}),
+            'about': forms.Textarea(attrs={'class':'form-control'}),
+        }
+
+
 class SignUpForm(UserCreationForm):                           #add init function in case the boostrap is messed up
     email = forms.EmailField()
     first_name = forms.CharField(max_length=100)
