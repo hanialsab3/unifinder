@@ -4,7 +4,14 @@ from django import forms
 from django.forms import ModelForm
 from .models import University, Student, Application, Program
 
+class ProfilePageStudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ('application_debug',)
 
+        widgets = {
+            'application_debug': forms.TextInput(attrs={'class':'form-control'})
+        }
 
 class ProfilePageUniverityForm(ModelForm):
     class Meta:

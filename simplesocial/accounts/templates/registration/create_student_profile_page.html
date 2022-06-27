@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h1>Create Student Progile Page</h1>
+<br>
+
+<div classb ="form-group">
+
+  <form  method="post" enctype='multipart/form-data' >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class = "btn btn-secondary">Create Profile Page</button>
+
+
+</div>
+
+
+<!-- </form> -->
+
+{% else %}
+  Please Log in first.
+{% endif %}
+{% endblock %}
